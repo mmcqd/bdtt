@@ -1,0 +1,7 @@
+(library
+ (name parse_cmd)
+  (preprocess
+  (action
+   (run pa_ocaml %{input-file})))
+ (libraries asai earley.core earley.str user_syntax)
+ )

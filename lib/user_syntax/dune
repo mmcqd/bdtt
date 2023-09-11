@@ -1,0 +1,7 @@
+(library
+ (name user_syntax)
+ (libraries asai)
+ (preprocess
+  (pps
+    ppx_deriving.show
+  )) )

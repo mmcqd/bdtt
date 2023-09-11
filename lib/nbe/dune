@@ -1,0 +1,8 @@
+(library
+ (name nbe)
+ (libraries bwd algaeff)
+ (preprocess
+  (pps
+    ppx_deriving.show
+  ))
+ )

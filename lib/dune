@@ -1,0 +1,4 @@
+(library
+ (name bdtt)
+ (libraries asai interpreter)
+ )
