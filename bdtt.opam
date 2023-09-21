@@ -12,7 +12,7 @@ depends: [
   "ocaml"
   "dune" {>= "3.8"}
   "odoc" {with-doc}
-  "algaeff" {>= "0.2"}
+  "algaeff"
   "bwd" {>= "2.2"}
   "earley" {>= "3.0"}
   "ppx_deriving" {>= "5.2"}
@@ -20,6 +20,7 @@ depends: [
 ]
 pin-depends: [
   [ "asai.~dev" "git+https://github.com/RedPRL/asai"]
+  [ "algaeff.1.0.0" "git+https://github.com/RedPRL/algaeff"]
 ]
 build: [
   ["dune" "subst"] {dev}

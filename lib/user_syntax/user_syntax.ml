@@ -20,4 +20,7 @@ and _term =
   | Lam of string list * term
   | App of term * term
   | Ann of {tm : term; tp : term}
+  | Nat
+  | Zero
+  | Suc of term
 [@@deriving show]

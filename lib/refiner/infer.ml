@@ -1,9 +1,7 @@
-
-module S = Nbe.Syntax
-module D = Nbe.Domain
+open Nbe
 
 type goal = unit
-type result = S.t
+type result = Domain.t * Syntax.t
 
 type t = goal -> result
 

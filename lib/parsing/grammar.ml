@@ -35,14 +35,17 @@ and parser cmd_ =
 and cmd = located cmd_
 
 and parser atomic_term_ =
-  | "{" term_ "}"
-  | "type" -> Univ
+  | "(" term_ ")"
+  | type_ -> Univ
   | x:name -> Var x
+  | nat -> Nat
+  | zero -> Zero
 and atomic_term = located atomic_term_
 
 and parser spine_term_ =
   | atomic_term_
   | f:spine_term arg:atomic_term -> App (f, arg)
+  | suc arg:spine_term -> Suc arg
 and spine_term = located spine_term_
 
 and parser term_ =
