@@ -1,5 +1,5 @@
 
-def test : nat -> nat -> nat :=
+def test : nat -> nat :=
   rec f [
     | zero  => zero
     | suc n => suc n
