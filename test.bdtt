@@ -1,3 +1,6 @@
 
-
-def id : type -> type := x => x
+def test : nat -> nat -> nat :=
+  rec f [
+    | zero  => zero
+    | suc n => suc n
+  ]

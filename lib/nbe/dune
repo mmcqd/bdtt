@@ -1,6 +1,6 @@
 (library
  (name nbe)
- (libraries bwd algaeff)
+ (libraries bwd algaeff logger)
  (preprocess
   (pps
     ppx_deriving.show

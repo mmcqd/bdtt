@@ -23,4 +23,5 @@ and _term =
   | Nat
   | Zero
   | Suc of term
+  | Rec of {name : string; zero : term; suc : string * term}
 [@@deriving show]

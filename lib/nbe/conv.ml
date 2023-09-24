@@ -5,7 +5,7 @@ module D = Domain
 
 type env = int
 module Eff = Algaeff.Reader.Make (struct type nonrec env = env end)
-
+let () = Eff.register_printer @@ fun `Read -> Some "Unhandled Conversion Read Effect"
 
 exception ConversionError
 
@@ -28,8 +28,8 @@ let rec equate (tp : D.tp) (tm1 : D.t) (tm2 : D.t) : unit =
   | D.Nat, D.Zero, D.Zero -> ()
   | D.Nat, D.Suc n1, D.Suc n2 -> equate D.Nat n1 n2
   | _, D.Neu neu1, D.Neu neu2 -> equate_neutral neu1.hd neu1.sp neu2.hd neu2.sp
-  | _ -> raise ConversionError
-
+  | _ -> 
+    raise ConversionError
 
 
 and equate_neutral hd1 sp1 hd2 sp2 = 
@@ -39,7 +39,6 @@ and equate_neutral hd1 sp1 hd2 sp2 =
 and equate_hd hd1 hd2 =
   match hd1, hd2 with
     | D.Lvl l1, D.Lvl l2 -> if Int.equal l1 l2 then () else raise ConversionError
-
 and equate_elim e1 e2 =
   match e1, e2 with
     | D.App a1, D.App a2 -> equate a1.tp a1.tm a2.tm

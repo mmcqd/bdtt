@@ -8,6 +8,7 @@ let keywords = Hashtbl.of_seq @@ List.to_seq [
   ("def",());
   ("zero",());
   ("suc",());
+  ("rec",())
 ]
 
 let parser raw_name = ''[a-zA-Z_][0-9a-zA-Z+_-]*''
@@ -24,6 +25,7 @@ let type_ = Earley.greedy @@ parser { "type" } -> ()
 let nat = Earley.greedy @@ parser { "nat" } -> ()
 let zero = Earley.greedy @@ parser { "zero" } -> ()
 let suc = Earley.greedy @@ parser { "suc" } -> ()
+let rec_ = Earley.greedy @@ parser { "rec" } -> ()
 let def = Earley.greedy @@ parser { "def" } -> ()
 let assign = Earley.greedy @@ parser { ":=" } -> ()
 let colon = Earley.greedy @@ parser { ":" } -> ()

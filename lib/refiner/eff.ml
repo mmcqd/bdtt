@@ -12,10 +12,9 @@ type elab_env = {
 }
 
 let empty_env = { locals = Bwd.Emp; local_tps = Bwd.Emp ; local_names = Bwd.Emp ; globals = Bwd.Emp ; local_size = 0 }
-module RefinerReader = Algaeff.Reader.Make(struct type nonrec env = elab_env end)
+include Algaeff.Reader.Make(struct type nonrec env = elab_env end)
 
-include RefinerReader
-
+let () = register_printer @@ fun `Read -> Some "Unhandled Refiner Read Effect"
 
 let bind ~id ~tp f =
   let env = read () in

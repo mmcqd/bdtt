@@ -62,3 +62,5 @@ and cell = {tm : t; tp : tp}
 let lvl tp l = Neu {hd = Lvl l ; sp = Bwd.Emp; tp = tp}
 
 let empty_env = {locals = Bwd.Emp; globals = Bwd.Emp}
+
+(* (rec f [zero => zero | suc n => suc (f n)]) x*)

@@ -5,6 +5,8 @@ module U = User_syntax
 module S = Nbe.Syntax
 module D = Nbe.Domain
 
+module Terminal = Asai.Tty.Make(Logger.ErrorCode)
+
 let eval_cmd globals (cmd : U.cmd) =
   match cmd.value with
     | Def {name ; tp ; tm} ->
@@ -12,7 +14,8 @@ let eval_cmd globals (cmd : U.cmd) =
         match tp with
           | Some tp ->
             let tp = Elaborator.Elab.check_top globals tp D.Univ |> Nbe.Eval.eval_top globals in
-            let tm = Elaborator.Elab.check_top globals tm tp |> Nbe.Eval.eval_top globals in
+            let tm = Elaborator.Elab.check_top globals tm tp in
+            let tm = tm |> Nbe.Eval.eval_top globals in
             tp,tm
           | None ->
             let tp, tm = Elaborator.Elab.infer_top globals tm () in
@@ -25,5 +28,7 @@ let eval_cmds = List.fold_left eval_cmd Bwd.Emp
 
 let run_program file =
   let cmds = Parse_cmd.parse_file file in
+  Logger.run ~emit:Terminal.interactive_trace ~fatal:Terminal.interactive_trace @@ fun () ->
+  Logger.Locate.run ~env:None @@ fun () ->
   let _ = eval_cmds cmds in
   print_endline @@ "Evaluted " ^ file

@@ -5,5 +5,6 @@ type result = Domain.t * Syntax.t
 
 type t = goal -> result
 
-let rule t = t
+let rule ?id t goal = 
+  (match id with Some _ -> () | None -> ()); t goal
 let run t goal = t goal

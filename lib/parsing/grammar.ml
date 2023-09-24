@@ -58,4 +58,7 @@ and parser term_ =
     Pi (base, "_", fam)
   | binds:name+ maps_to tm:term ->
     Lam (binds, tm)
+  | rec_ id:name "[" "|"? zero maps_to z:term "|" suc n:name maps_to s:term "]" ->
+    Rec {name = id; zero = z; suc = (n,s)}
+
 and term = located term_

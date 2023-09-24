@@ -1,4 +1,4 @@
 (library
  (name interpreter)
- (libraries elaborator nbe parse_cmd user_syntax bwd)
+ (libraries elaborator nbe parse_cmd user_syntax bwd asai logger)
 )

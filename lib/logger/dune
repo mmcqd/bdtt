@@ -1,0 +1,8 @@
+(library
+ (name logger)
+ (libraries asai)
+  (preprocess
+  (pps
+    ppx_deriving.show
+  ))
+)
