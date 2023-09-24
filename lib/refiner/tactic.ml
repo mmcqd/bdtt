@@ -103,7 +103,7 @@ let trace (type t) (module T : TacKind with type t = t) ?loc : ('a, Format.forma
   Asai.Diagnostic.kmessagef ?loc @@ fun msg tac -> 
     T.rule ~id:"TRACE" @@ fun goal ->
       Logger.Locate.scope (fun _ -> loc) @@ fun () ->
-      Logger.trace msg @@ fun () -> 
+      Logger.trace_message msg @@ fun () ->
         T.run tac goal
 
 let trace_check ?loc = trace (module Check) ?loc
