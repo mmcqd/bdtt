@@ -15,11 +15,11 @@ let lexing_position i c =
   }
 
 let locate i1 c1 i2 c2 =
-  Asai.Span.make (lexing_position i1 c1) (lexing_position i2 c2)
+  Asai.Span.make (lexing_position i1 c1, lexing_position i2 c2)
 
-let located p =
+let located p : _ Asai.Span.located Earley.grammar =
   p |> Earley.apply_position @@ fun i1 c1 i2 c2 x ->
-  Asai.Span.{
+  {
     value = x;
     loc = Some (locate i1 c1 i2 c2);
   }

@@ -33,7 +33,7 @@ type pos = Asai.Span.position =  {
 
 type pos_pair_opt = (pos * pos) option [@@deriving show]
 
-let show_span_opt sp = show_pos_pair_opt (Option.map Asai.Span.to_positions sp)
+let show_span_opt sp = show_pos_pair_opt (Option.map Asai.Span.split sp)
 
 let fatalf ?severity ?backtrace ?additional_messages code =
   fatalf ?loc:(Locate.read ()) ?severity ?backtrace ?additional_messages code
